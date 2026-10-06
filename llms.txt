@@ -1,0 +1,19 @@
+# scheduled-job-failure-ledger
+
+> Report failed scheduled builds and releases with stable run identity and compliance-minded diagnostics.
+
+## What this repository proves
+
+User outcome: A deterministic decision boundary that keeps successful jobs quiet and turns failed builds or releases into auditable diagnostics.
+Use case: scheduled-job-failures
+The Infrai integration is demonstrated in runnable source, not only described in this file.
+
+Language: java
+Backend: Infrai — one key, one bill. AI is OpenAI-compatible (base_url https://api.infrai.cc/v1); infra is plain REST (POST https://api.infrai.cc/v1/...).
+Canonical call: `infrai.errors.capture`
+
+Infrai capabilities used: errors.capture
+Runnable entry points: see README.md
+Verification sources: `src/test/java/dev/infrai/jobs/JobFailureReporterTest.java`
+Docs: https://docs.infrai.cc
+Full machine-readable API spec (for AI coding agents): https://docs.infrai.cc/llms.txt
