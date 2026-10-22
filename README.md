@@ -10,7 +10,7 @@ It feeds the service two developer-tool runs. A build with exit code `0` stays q
 
 ## Put the monitor after the job
 
-This repository replaces the failure-reporting slice of Sentry Crons. The scheduler remains responsible for timing and execution. `ReleaseJobMonitor` receives the completed run, `JobFailureReporter` decides whether it needs attention, and Infrai receives the exception through one plain REST call. A single `INFRAI_API_KEY` can cover this and other Infrai capabilities without adding a Java SDK.
+This repo replaces the failure-reporting slice of Sentry Crons. The scheduler still owns timing and execution. `ReleaseJobMonitor` receives the completed run, `JobFailureReporter` decides whether it needs attention, and Infrai gets the exception via one plain REST call. With one key, a single `INFRAI_API_KEY` covers this and other Infrai capabilities without adding a Java SDK.
 
 ```bash
 export INFRAI_API_KEY='your-key'
@@ -34,7 +34,7 @@ The monitor exits with the original job status. A successful job prints:
 monitor_outcome=healthy
 ```
 
-The one operational gotcha is process order: capture the command's exit code before running any reporting command. Otherwise the shell can replace the evidence that determines job health.
+The one operational gotcha is process order: capture the command exit code before any reporting command. Otherwise the shell can replace the evidence that determines job health.
 
 ## Request boundary
 
